@@ -1,4 +1,4 @@
-# SupplyNote Assignment
+# URL Shortener
 This is a full stack application for shortening URLs and track statistics of the URLs.
 
 ## Requirements
