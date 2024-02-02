@@ -1,0 +1,116 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary mx-7 px-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img src="https://adurcup-docs.s3.amazonaws.com/SupplyNote+Logo+-+Complete.svg" alt="home">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+        <% if (locals.user) { %>
+
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Sign Out
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Out</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to exit?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">No</button>
+                  <a href="/users/sign-out"><button type="button" class="btn btn-outline-danger">Yes</button></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } else { %>
+          <!-- Inside your navbar or wherever you want the signup button -->
+          <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#signupOffcanvas" aria-controls="signupOffcanvas">
+            Log In / Sign Up
+          </button>
+
+          <div class="offcanvas-xxl offcanvas-end" tabindex="-1" id="signupOffcanvas" aria-labelledby="signupOffcanvasLabel">
+            <div class="offcanvas-header">
+              <h3></h3>
+              <button type="button" class="btn btn-outline-dark btn-lg" data-bs-dismiss="offcanvas" data-bs-target="#signupOffcanvas">X</button>
+            </div>
+            <div class="offcanvas-body">
+              <img src="https://adurcup-docs.s3.amazonaws.com/SupplyNote+Logo+-+Complete.svg" alt="home">
+              <h5 style="text-align: center;">Welcome to URL Shortener</h5>
+              <form action="/users/create" method="POST">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="password" id="password" required>
+                </div>
+                <div><span>By Clicking on "Create Account", I agree to SupplyNote's Terms & Condition</span></div>
+                <div class="mb-3 mt-3 mx-1 row">
+                  <button class="btn btn-primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i>&emsp;Create An Account</button>
+                </div>
+              </form>
+              <h5 style="text-align: center;">Already a user? <a style="text-decoration: none;" href="#" onclick="openLoginOffcanvas();">Log In</a></h5>
+            </div>
+          </div>
+          <div class="offcanvas-xxl offcanvas-end" tabindex="-1" id="loginOffcanvas" aria-labelledby="loginOffcanvasLabel">
+            <div class="offcanvas-header">
+              <h3></h3>
+              <button type="button" class="btn btn-outline-dark btn-lg" data-bs-dismiss="offcanvas" data-bs-target="#loginOffcanvas">X</button>
+            </div>
+            <div class="offcanvas-body">
+              <img src="https://adurcup-docs.s3.amazonaws.com/SupplyNote+Logo+-+Complete.svg" alt="home">
+              <h5 style="text-align: center;">Welcome to URL Shortener</h5>
+              <form action="/users/create-session" method="POST">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <div class="mb-3 mt-3 mx-1 row">
+                  <button class="btn btn-primary" type="submit"><i class="fa-solid fa-right-to-bracket"></i>&emsp;Sign In</button>
+                </div>
+              </form>
+              <h5 style="text-align: center;">Don't have an account? <a style="text-decoration: none;" href="#" onclick="openSignupOffcanvas()">Sign Up</a></h5>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+</nav>

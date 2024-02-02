@@ -1,0 +1,26 @@
+{
+  "name": "supplynote-assignment",
+  "version": "1.0.0",
+  "description": "URL shortener",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Argha",
+  "license": "ISC",
+  "dependencies": {
+    "connect-mongo": "^4.4.0-rc1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "mongoose": "^8.0.3",
+    "nanoid": "^3.3.7",
+    "node-sass-middleware": "^1.1.0",
+    "nodemon": "^3.0.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0"
+  }
+}

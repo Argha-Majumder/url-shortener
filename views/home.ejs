@@ -1,0 +1,87 @@
+<% if (locals.user) { %>
+    <div id="background">
+        <h3 style="text-align: center; margin-top: 5px;">Welcome <%= user.name %></h3>
+        <div class="container w-50 p-4" style="background-color: white;">
+            <form action="/users/shorten" method="POST" class="form-check-inline d-flex flex-column gap-3">
+                <label for="full"><strong>Shorten a long URL</strong></label>
+                <input type="url" placeholder="Enter long link here" name="full" id="full" class="form-control mr-2" required>
+                <button type="submit" class="btn btn-success">Shorten URL</button>
+            </form>
+        </div>
+        <% let links = user.links; %>
+        <% if (links.length!=0) { %>
+            <div class="container">
+                <table class="table table-striped table-responsive mt-3">
+                    <thead>
+                        <tr>
+                            <th>Full URL</th>
+                            <th>Short URL</th>
+                            <th>Visited</th>
+                            <th>Expiry Date</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let link of links) { %>
+                        <tr>
+                            <td><a href="<%= link.full %>" target="_blank"><span class="d-inline-block text-truncate" style="max-width: 150px;"><%= link.full %></span></a></td>
+                            <td><a href="/users/<%= link.short %>" target="_blank"><%= link.short %></a></td>
+                            <td><%= link.clicks %></td>
+                            <td><%= link.expiryDate %></td>
+                            <td><a href="/users/delete/<%= link._id %>" style="cursor: pointer;"><i class="fa-regular fa-trash-can " style="color: #f00;"></i></a></td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        <% } %>
+    </div>
+<% } else { %>
+    <h3 style="text-align: center;">Welcome to URL Shortener&nbsp;<i class="fa-solid fa-link"></i></h3>
+    <h5 style="text-align: center;">The Original URL Shortener</h5>
+    <p style="text-align: center;">Create shorter URLs with our URL Shortener</p>
+    <p style="text-align: center;">Our URL Shortener includes: </p>
+    <div class="container text-center w-75">
+        <div class="row gap-3">
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-title mt-3 color-text">Statistics</h5>
+                    <img src="https://cdn2.vectorstock.com/i/1000x1000/50/46/computer-chart-statistics-business-vector-22915046.jpg" class="card-img-top" alt="statistics" style="height: 18rem;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Track how many clicks your links are generating, and all of this without paying a penny</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-title mt-3 color-text">Free</h5>
+                    <img src="https://th.bing.com/th/id/OIP.tCVTZnvkrZKv2hAECM3-qAHaE_?w=274&h=185&c=7&r=0&o=5&pid=1.7" class="card-img-top" alt="free" style="height: 18rem;">
+                    <div class="card-body">
+                        <p class="card-text"><b>Our service is 100% free. Create as many links as you want, and also track statistics for each link</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <h5 class="card-title mt-3 color-text">Short URL</h5>
+                    <img src="https://th.bing.com/th/id/OIP.frLpygh5wsrWP6PqYd7Z6wHaHa?pid=ImgDet&w=194&h=194&c=7" class="card-img-top" alt="short-url">
+                    <div class="card-body">
+                        <p class="card-text"><b>Extremely short URLs, we have the shortest shortened URL in the market, using only 6 characters</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-5 p-5 border shadow w-75">
+        <p>
+            Link shortening is a practice used to transform a long URL into a much shorter and easy-to-remember link. It is ideal for use in promoting 
+            <b>links on social media</b> and sending SMS messages. <br>
+            This URL Shortener has a sophisticated and robust URL shortening system. Our database of shortened links has billions of clicks with a 
+            response time of 50 milliseconds. It is a <b>100% free service</b>, where shortened links expire after 48 hours, ensuring total satisfaction 
+            and security for our users. <br> 
+            We also provide a monitoring panel, where you can track how many clicks your links are receiving. Shorten links from Whatsapp, Youtube, 
+            Facebook, Instagram, X (formerly Twitter) and much more!
+        </p>
+    </div>
+<% } %>
